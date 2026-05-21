@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #f3ad16;
+  --gold-soft: #ffd565;
+  --beige: #f5dfb6;
+  --bordeaux: #8e1712;
+  --ink: #120c08;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(243, 173, 22, 0.17), transparent 31rem),
+    radial-gradient(circle at 88% 9%, rgba(142, 23, 18, 0.21), transparent 30rem),
+    #120c08;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgba(243, 173, 22, 0.35);
+  color: #fff6df;
+}
+
+.cinematic-vignette {
+  background:
+    linear-gradient(90deg, rgba(18, 12, 8, 0.92) 0%, rgba(18, 12, 8, 0.62) 34%, rgba(18, 12, 8, 0.08) 67%, rgba(18, 12, 8, 0.75) 100%),
+    linear-gradient(0deg, rgba(18, 12, 8, 0.96) 0%, rgba(18, 12, 8, 0.12) 38%, rgba(18, 12, 8, 0.55) 100%);
+}
+
+.gold-line-frame {
+  box-shadow:
+    0 0 0 1px rgba(255, 213, 101, 0.3),
+    0 0 34px rgba(243, 173, 22, 0.2),
+    inset 0 0 28px rgba(243, 173, 22, 0.08);
+}
+
+.expo-glow {
+  box-shadow:
+    0 0 0 1px rgba(243, 173, 22, 0.27),
+    0 18px 90px rgba(0, 0, 0, 0.47),
+    0 0 80px rgba(243, 173, 22, 0.13);
+}
+
+.soft-mask {
+  mask-image: linear-gradient(90deg, transparent 0%, black 9%, black 91%, transparent 100%);
+}
+
+@keyframes light-sweep {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+.light-sweep::after {
+  animation: light-sweep 6.8s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 230, 150, 0.26), transparent);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 34%;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    opacity: 0.22;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.58;
+    transform: translate3d(18px, -24px, 0) scale(1.18);
+  }
+}
+
+.floating-particle {
+  animation: particle-float 7s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255, 213, 101, 0.5), transparent 68%);
+  border-radius: 999px;
+  height: 9rem;
+  position: absolute;
+  width: 9rem;
+}
+
+.animation-delay-\[900ms\] {
+  animation-delay: 900ms;
+}
+
+.animation-delay-\[1600ms\] {
+  animation-delay: 1600ms;
+}
+
+.masonry-columns {
+  column-count: 1;
+  column-gap: 18px;
+}
+
+@media (min-width: 768px) {
+  .masonry-columns {
+    column-count: 3;
+  }
+}

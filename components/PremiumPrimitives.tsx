@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { LocalizedValue } from "./LocalizedText";
+import { LocalizedTextView } from "./LocalizedText";
 import { Reveal } from "./Reveal";
 
 type SectionTitleProps = {
-  eyebrow: string;
-  title: string;
-  copy?: string;
+  eyebrow: LocalizedValue;
+  title: LocalizedValue;
+  copy?: LocalizedValue;
   align?: "left" | "center";
 };
 
 type PageHeroProps = {
-  eyebrow: string;
-  title: string;
-  copy: string;
+  eyebrow: LocalizedValue;
+  title: LocalizedValue;
+  copy: LocalizedValue;
   image?: string;
 };
 
@@ -29,21 +31,21 @@ type PremiumCardProps = {
 };
 
 type ExhibitionCardProps = {
-  title: string;
-  copy: string;
+  title: LocalizedValue;
+  copy: LocalizedValue;
   image: string;
-  meta?: string;
+  meta?: LocalizedValue;
 };
 
 type TimelineItem = {
-  year: string;
-  title: string;
-  copy: string;
+  year: LocalizedValue;
+  title: LocalizedValue;
+  copy: LocalizedValue;
 };
 
 type StatItem = {
   value: string;
-  label: string;
+  label: LocalizedValue;
 };
 
 export const AnimatedReveal = Reveal;
@@ -68,12 +70,14 @@ export function PageHero({ eyebrow, title, copy, image = "/assets/expo-hall.png"
       <div className="relative z-10 mx-auto flex max-w-[1280px] flex-col justify-end pb-[84px] md:pb-[112px]">
         <Reveal className="max-w-[920px]">
           <p className="inline-flex border-y border-[#f3ad16]/35 py-[10px] text-[12px] font-black uppercase tracking-[0.28em] text-[#ffd565]">
-            {eyebrow}
+            <LocalizedTextView value={eyebrow} />
           </p>
           <h1 className="mt-[26px] text-[52px] font-black uppercase leading-[0.9] tracking-[-0.045em] text-[#fff7df] drop-shadow-[0_12px_36px_rgba(0,0,0,0.62)] md:text-[102px] xl:text-[126px]">
-            {title}
+            <LocalizedTextView value={title} />
           </h1>
-          <p className="mt-[28px] max-w-[700px] text-[18px] leading-[1.78] text-[#f5dfb6] md:text-[22px]">{copy}</p>
+          <p className="mt-[28px] max-w-[700px] text-[18px] leading-[1.78] text-[#f5dfb6] md:text-[22px]">
+            <LocalizedTextView value={copy} />
+          </p>
         </Reveal>
       </div>
     </section>
@@ -83,11 +87,17 @@ export function PageHero({ eyebrow, title, copy, image = "/assets/expo-hall.png"
 export function SectionTitle({ eyebrow, title, copy, align = "left" }: SectionTitleProps) {
   return (
     <Reveal className={align === "center" ? "mx-auto max-w-[880px] text-center" : "max-w-[830px]"}>
-      <p className="text-[12px] font-black uppercase tracking-[0.28em] text-[#f3ad16]">{eyebrow}</p>
+      <p className="text-[12px] font-black uppercase tracking-[0.28em] text-[#f3ad16]">
+        <LocalizedTextView value={eyebrow} />
+      </p>
       <h2 className="mt-[16px] text-[38px] font-black uppercase leading-[1] tracking-[-0.035em] text-[#fff4d3] md:text-[66px]">
-        {title}
+        <LocalizedTextView value={title} />
       </h2>
-      {copy ? <p className="mt-[23px] text-[17px] leading-[1.78] text-[#d9bb82] md:text-[19px]">{copy}</p> : null}
+      {copy ? (
+        <p className="mt-[23px] text-[17px] leading-[1.78] text-[#d9bb82] md:text-[19px]">
+          <LocalizedTextView value={copy} />
+        </p>
+      ) : null}
     </Reveal>
   );
 }
@@ -121,12 +131,20 @@ export function ExhibitionCard({ title, copy, image, meta }: ExhibitionCardProps
     <Reveal>
       <article className="group overflow-hidden rounded-[26px] border border-[#f3ad16]/22 bg-[#23130d] p-[8px] shadow-[0_24px_74px_rgba(0,0,0,0.34)]">
         <div className="relative aspect-[1.28] overflow-hidden rounded-[18px]">
-          <Image src={image} alt={title} fill className="object-cover transition duration-700 group-hover:scale-[1.045]" sizes="(min-width: 768px) 33vw, 100vw" />
+          <Image src={image} alt="" fill className="object-cover transition duration-700 group-hover:scale-[1.045]" sizes="(min-width: 768px) 33vw, 100vw" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#120c08]/84 via-[#120c08]/10 to-transparent" />
           <div className="absolute inset-x-[18px] bottom-[18px]">
-            {meta ? <p className="mb-[8px] text-[10px] font-black uppercase tracking-[0.2em] text-[#f3ad16]">{meta}</p> : null}
-            <h3 className="text-[21px] font-black uppercase leading-[1.05] tracking-[-0.02em] text-[#fff4d3]">{title}</h3>
-            <p className="mt-[10px] text-[14px] leading-[1.62] text-[#e4c78e]">{copy}</p>
+            {meta ? (
+              <p className="mb-[8px] text-[10px] font-black uppercase tracking-[0.2em] text-[#f3ad16]">
+                <LocalizedTextView value={meta} />
+              </p>
+            ) : null}
+            <h3 className="text-[21px] font-black uppercase leading-[1.05] tracking-[-0.02em] text-[#fff4d3]">
+              <LocalizedTextView value={title} />
+            </h3>
+            <p className="mt-[10px] text-[14px] leading-[1.62] text-[#e4c78e]">
+              <LocalizedTextView value={copy} />
+            </p>
           </div>
         </div>
       </article>
@@ -138,12 +156,18 @@ export function Timeline({ items }: { items: TimelineItem[] }) {
   return (
     <div className="space-y-[18px]">
       {items.map((item, index) => (
-        <Reveal key={item.year} delay={index * 0.06}>
+        <Reveal key={JSON.stringify(item.year)} delay={index * 0.06}>
           <div className="grid gap-[16px] border-l border-[#f3ad16]/36 pl-[24px] md:grid-cols-[140px_1fr]">
-            <div className="text-[34px] font-black tracking-[-0.04em] text-[#ffd565]">{item.year}</div>
+            <div className="text-[34px] font-black tracking-[-0.04em] text-[#ffd565]">
+              <LocalizedTextView value={item.year} />
+            </div>
             <PremiumCard>
-              <h3 className="text-[22px] font-black uppercase tracking-[-0.02em] text-[#fff4d3]">{item.title}</h3>
-              <p className="mt-[10px] text-[15px] leading-[1.72] text-[#d9bb82]">{item.copy}</p>
+              <h3 className="text-[22px] font-black uppercase tracking-[-0.02em] text-[#fff4d3]">
+                <LocalizedTextView value={item.title} />
+              </h3>
+              <p className="mt-[10px] text-[15px] leading-[1.72] text-[#d9bb82]">
+                <LocalizedTextView value={item.copy} />
+              </p>
             </PremiumCard>
           </div>
         </Reveal>
@@ -156,10 +180,12 @@ export function StatsSection({ stats }: { stats: StatItem[] }) {
   return (
     <div className="grid gap-[12px] md:grid-cols-4">
       {stats.map((stat, index) => (
-        <Reveal key={stat.label} delay={index * 0.05}>
+        <Reveal key={JSON.stringify(stat.label)} delay={index * 0.05}>
           <PremiumCard>
             <div className="text-[38px] font-black tracking-[-0.045em] text-[#ffd565] md:text-[52px]">{stat.value}</div>
-            <div className="mt-[8px] text-[10px] font-black uppercase tracking-[0.18em] text-[#c9a66b]">{stat.label}</div>
+            <div className="mt-[8px] text-[10px] font-black uppercase tracking-[0.18em] text-[#c9a66b]">
+              <LocalizedTextView value={stat.label} />
+            </div>
           </PremiumCard>
         </Reveal>
       ))}
@@ -175,25 +201,31 @@ export function CTASection({
   secondaryHref,
   secondaryLabel
 }: {
-  title: string;
-  copy: string;
+  title: LocalizedValue;
+  copy: LocalizedValue;
   primaryHref: string;
-  primaryLabel: string;
+  primaryLabel: LocalizedValue;
   secondaryHref?: string;
-  secondaryLabel?: string;
+  secondaryLabel?: LocalizedValue;
 }) {
   return (
     <section className="relative overflow-hidden bg-[#2a0f0b] px-[22px] py-[82px] md:px-[48px] md:py-[116px]">
       <Image src="/assets/artisan-bread.png" alt="" fill className="object-cover opacity-[0.2]" sizes="100vw" />
       <div className="absolute inset-0 bg-[#2a0f0b]/78" />
       <Reveal className="relative z-10 mx-auto max-w-[980px] text-center">
-        <h2 className="text-[40px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-[#fff4d3] md:text-[76px]">{title}</h2>
-        <p className="mx-auto mt-[24px] max-w-[640px] text-[17px] leading-[1.76] text-[#f1d6a1] md:text-[19px]">{copy}</p>
+        <h2 className="text-[40px] font-black uppercase leading-[0.98] tracking-[-0.04em] text-[#fff4d3] md:text-[76px]">
+          <LocalizedTextView value={title} />
+        </h2>
+        <p className="mx-auto mt-[24px] max-w-[640px] text-[17px] leading-[1.76] text-[#f1d6a1] md:text-[19px]">
+          <LocalizedTextView value={copy} />
+        </p>
         <div className="mt-[36px] flex flex-wrap justify-center gap-[14px]">
-          <PremiumButton href={primaryHref}>{primaryLabel}</PremiumButton>
+          <PremiumButton href={primaryHref}>
+            <LocalizedTextView value={primaryLabel} />
+          </PremiumButton>
           {secondaryHref && secondaryLabel ? (
             <PremiumButton href={secondaryHref} variant="outline">
-              {secondaryLabel}
+              <LocalizedTextView value={secondaryLabel} />
             </PremiumButton>
           ) : null}
         </div>

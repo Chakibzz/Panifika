@@ -4,18 +4,15 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 
-const categories = ["All", "Bakery", "Pastry", "Pizza", "Coffee", "Equipment"];
+const categories = ["All", "Bakery", "Pastry", "Pizza", "Coffee", "Equipment", "Packaging"];
 
 const exhibitors = [
-  { name: "Maison Levain", category: "Bakery", stand: "A-14", country: "France" },
-  { name: "Dolce Forni", category: "Equipment", stand: "B-22", country: "Italy" },
-  { name: "Cacao Atelier", category: "Pastry", stand: "C-08", country: "Belgium" },
-  { name: "Crema Roasters", category: "Coffee", stand: "D-11", country: "Brazil" },
-  { name: "Napoli Dough Lab", category: "Pizza", stand: "E-17", country: "Italy" },
-  { name: "Golden Grain Co.", category: "Bakery", stand: "A-31", country: "Canada" },
-  { name: "Bordeaux Machines", category: "Equipment", stand: "B-06", country: "France" },
-  { name: "Sucre Lumiere", category: "Pastry", stand: "C-19", country: "Spain" },
-  { name: "Arabica Pavilion", category: "Coffee", stand: "D-04", country: "Ethiopia" }
+  { name: "Bakery equipment", category: "Equipment", stand: "Opening soon", country: "Target sector" },
+  { name: "Ingredients and flour", category: "Bakery", stand: "Opening soon", country: "Target sector" },
+  { name: "Pastry and chocolate", category: "Pastry", stand: "Opening soon", country: "Target sector" },
+  { name: "Pizza and snacking", category: "Pizza", stand: "Opening soon", country: "Target sector" },
+  { name: "Coffee and hospitality", category: "Coffee", stand: "Opening soon", country: "Target sector" },
+  { name: "Packaging solutions", category: "Packaging", stand: "Opening soon", country: "Target sector" }
 ];
 
 export function ExhibitorDirectory() {
@@ -78,7 +75,7 @@ export function ExhibitorDirectory() {
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#f3ad16]">{exhibitor.category}</p>
             <h3 className="mt-[10px] text-[24px] font-black uppercase leading-[1.05] tracking-[-0.03em] text-[#fff4d3]">{exhibitor.name}</h3>
             <div className="mt-[18px] flex justify-between border-t border-[#f3ad16]/18 pt-[16px] text-[11px] font-black uppercase tracking-[0.14em] text-[#c9a66b]">
-              <span>Stand {exhibitor.stand}</span>
+              <span>{exhibitor.stand}</span>
               <span>{exhibitor.country}</span>
             </div>
           </motion.article>

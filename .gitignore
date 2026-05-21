@@ -6,3 +6,4 @@ dev-*.log
 .env
 .env.*
 !.env.example
+.vercel

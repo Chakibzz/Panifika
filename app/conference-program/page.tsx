@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LocalizedTextView } from "@/components/LocalizedText";
 import { PageLayout } from "@/components/PageLayout";
 import { CTASection, PageHero, PremiumCard, SectionTitle, Timeline } from "@/components/PremiumPrimitives";
@@ -17,6 +18,25 @@ export default function ConferenceProgramPage() {
       <section className="bg-[#120c08] px-[22px] py-[82px] md:px-[48px] md:py-[124px]">
         <div className="mx-auto max-w-[1280px]">
           <SectionTitle eyebrow={tx("Tracks", "Tracks")} title={tx("Themes en cours de curation.", "Themes under curation.")} />
+          <div className="mt-[32px] rounded-[26px] border border-[#f3ad16]/24 bg-[#23130d]/82 p-[24px] shadow-[0_24px_74px_rgba(0,0,0,0.34)] md:flex md:items-center md:justify-between md:gap-[28px]">
+            <div>
+              <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#f3ad16]">
+                <LocalizedTextView value={tx("Placeholder document", "Placeholder document")} />
+              </p>
+              <h2 className="mt-[10px] text-[28px] font-black uppercase leading-[1] text-[#fff4d3]">
+                <LocalizedTextView value={tx("Programme conferences provisoire", "Temporary conference program")} />
+              </h2>
+              <p className="mt-[12px] max-w-[660px] text-[15px] leading-[1.7] text-[#d9bb82]">
+                <LocalizedTextView value={tx("Document importe d'une autre exposition, utilise comme support visuel provisoire.", "Document imported from another exhibition and used as a temporary visual placeholder.")} />
+              </p>
+            </div>
+            <Link
+              href="/assets/placeholders/placeholder-programme-conferences.docx"
+              className="mt-[22px] inline-flex rounded-[999px] bg-[#f3ad16] px-[24px] py-[14px] text-[11px] font-black uppercase tracking-[0.18em] text-[#4b0f0b] shadow-[0_0_34px_rgba(243,173,22,0.26)] md:mt-0"
+            >
+              <LocalizedTextView value={tx("Telecharger DOCX", "Download DOCX")} />
+            </Link>
+          </div>
           <div className="mt-[42px] grid gap-[14px] md:grid-cols-3">
             {conferenceTracks.map((track) => (
               <PremiumCard key={JSON.stringify(track)}>

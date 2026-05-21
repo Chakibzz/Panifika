@@ -13,6 +13,17 @@ export function Hero() {
     <section className="relative min-h-[760px] overflow-hidden md:min-h-[900px]">
       <motion.div style={{ y: imageY }} className="absolute inset-0 scale-[1.06]">
         <Image src="/assets/expo-hall.png" alt="" fill priority className="object-cover" sizes="100vw" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/assets/placeholders/expo-placeholder-video-01.mp4"
+          poster="/assets/expo-hall.png"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
       </motion.div>
       <div className="cinematic-vignette absolute inset-0" />
       <div className="absolute inset-x-0 bottom-0 h-[180px] bg-gradient-to-t from-[#120c08] to-transparent" />
